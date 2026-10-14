@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  sentinelpulse-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sentinelpulse-ml-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./models_artifacts:/app/models_artifacts
+      - ./data:/app/data
+    restart: unless-stopped
